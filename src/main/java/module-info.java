@@ -8,4 +8,5 @@ module com.ities45.firealarm {
     requires com.fazecast.jSerialComm;
     requires derbyclient;
     requires java.sql;
+    requires java.mail;
 }
