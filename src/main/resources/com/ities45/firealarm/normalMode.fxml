@@ -2,6 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -47,8 +48,11 @@
                      <children>
                         <ImageView fx:id="userIcon" fitHeight="34.0" fitWidth="41.0" layoutX="10.0" layoutY="10.0" onDragDetected="#handleUserIconClick" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../images/icons8-firefighter-50.png" />
+                              <Image url="@../../../images/userIcon.png" />
                            </image>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
                         </ImageView>
                      </children>
                   </Pane>

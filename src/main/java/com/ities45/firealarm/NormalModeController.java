@@ -52,9 +52,13 @@ public class NormalModeController implements Initializable {
         logo.setClip(clip);
         
         logo.setOnMouseClicked(this::handleLogoClick);
-        
+      
         logo.setOnMouseEntered(this::handleMouseEntered);
         logo.setOnMouseExited(this::handleMouseExited);
+        
+        userIcon.setOnMouseClicked(this::handleUserIconClick);
+        userIcon.setOnMouseEntered(this::handleMouseEntered);
+        userIcon.setOnMouseExited(this::handleMouseExited);
     } 
     
     @FXML
@@ -110,15 +114,14 @@ public class NormalModeController implements Initializable {
         popup.getContent().add(userInfoBox);
         popup.show(userIcon, event.getScreenX(), event.getScreenY());
     }
-    @FXML
-    // Method to handle mouse entering the logo (change cursor to hand)
     private void handleMouseEntered(MouseEvent event) {
         logo.getScene().setCursor(Cursor.HAND); // Set cursor to hand when mouse enters the logo
+        userIcon.getScene().setCursor(Cursor.HAND); 
+        
     }
-    @FXML
-    // Method to handle mouse exiting the logo (reset cursor to default)
     private void handleMouseExited(MouseEvent event) {
         logo.getScene().setCursor(Cursor.DEFAULT); // Reset cursor to default (arrow) when mouse exits the logo
+        userIcon.getScene().setCursor(Cursor.DEFAULT);
     }
     
 }
