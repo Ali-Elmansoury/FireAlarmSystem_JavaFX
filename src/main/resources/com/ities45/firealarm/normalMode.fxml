@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ities45.firealarm.NormalModeController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.ities45.firealarm.NormalModeController">
     <stylesheets>
-        <URL value="@/styles/normalmode.css"/>
+        <URL value="@/styles/normalmode.css" />
     </stylesheets>
+   <children>
+      <BorderPane prefHeight="545.0" prefWidth="916.0">
+         <top>
+            <FlowPane prefHeight="64.0" prefWidth="916.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="50.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="profileImageView" fitHeight="65.0" fitWidth="54.0" layoutX="-2.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../../../Downloads/logo.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <FlowPane.margin>
+                        <Insets left="10.0" top="7.0" />
+                     </FlowPane.margin>
+                  </Pane>
+                  <Label fx:id="appName" prefHeight="16.0" prefWidth="175.0" text="Fire Alarm">
+                     <FlowPane.margin>
+                        <Insets left="15.0" top="4.0" />
+                     </FlowPane.margin>
+                     <font>
+                        <Font name="SansSerif Bold" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </FlowPane>
+         </top>
+      </BorderPane>
+   </children>
 </AnchorPane>

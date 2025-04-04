@@ -6,21 +6,34 @@ package com.ities45.firealarm;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 
 /**
  * FXML Controller class
  *
  * @author ali
  */
+
 public class NormalModeController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
+    
+    @FXML
+    private ImageView profileImageView;
+    @FXML
+    private Label appName;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        profileImageView.getStyleClass().add("image-view");
     }    
     
 }
