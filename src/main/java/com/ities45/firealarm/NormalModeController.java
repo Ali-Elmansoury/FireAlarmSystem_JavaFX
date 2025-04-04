@@ -26,14 +26,15 @@ public class NormalModeController implements Initializable {
      */
     
     @FXML
-    private ImageView profileImageView;
+    private ImageView logo;
     @FXML
     private Label appName;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        profileImageView.getStyleClass().add("image-view");
+        
+
     }    
     
 }
