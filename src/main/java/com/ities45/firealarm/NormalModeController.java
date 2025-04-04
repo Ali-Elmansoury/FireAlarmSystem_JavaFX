@@ -69,10 +69,10 @@ public class NormalModeController implements Initializable {
             Stage stage = (Stage) logo.getScene().getWindow();
 
             // Reload the FXML file (e.g., "normalmode.fxml")
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/normalmode.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/ities45/firealarm/normalMode.fxml"));
 
             // Create a new scene and set it to the stage
-            Scene scene = new Scene(root, 640, 480);
+            Scene scene = new Scene(root, 920, 550);
             stage.setScene(scene);
             stage.show();
         
