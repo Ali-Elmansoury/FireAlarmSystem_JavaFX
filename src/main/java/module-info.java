@@ -7,4 +7,5 @@ module com.ities45.firealarm {
     exports com.ities45.firealarm;
     requires com.fazecast.jSerialComm;
     requires derbyclient;
+    requires java.sql;
 }
