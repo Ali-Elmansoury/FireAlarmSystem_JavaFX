@@ -1,5 +1,6 @@
 package com.ities45.firealarm;
 
+import com.ities45.firealarm.sessionmanagement.SessionManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,11 +17,21 @@ public class App extends Application {
     private static Scene scene;
 
     @Override
-    public void start(Stage stage) throws IOException {
+public void start(Stage stage) throws IOException {
+    String loggedInUser = SessionManager.getLoggedInUser();
+
+    if (loggedInUser != null) {
+        // User is already logged in, go to home
         scene = new Scene(loadFXML("normalMode"), 604, 839);
-        stage.setScene(scene);
-        stage.show();
+    } else {
+        // No user session, show login/register or splash
+        scene = new Scene(loadFXML("splash"), 604, 839);
     }
+
+    stage.setScene(scene);
+    stage.show();
+}
+
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));

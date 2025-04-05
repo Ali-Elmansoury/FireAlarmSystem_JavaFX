@@ -1,7 +1,6 @@
-/*
- * Empty Stylesheet file.
- */
-
-.mainFxmlClass {
-
+.anchor-pane-bg {
+    -fx-background-color: #FFFFE0;  /* Light yellow color */
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
 }

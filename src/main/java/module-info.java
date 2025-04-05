@@ -9,4 +9,5 @@ module com.ities45.firealarm {
     requires derbyclient;
     requires java.sql;
     requires java.mail;
+    requires java.prefs;
 }

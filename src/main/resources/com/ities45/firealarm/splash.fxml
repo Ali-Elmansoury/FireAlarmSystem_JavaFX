@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ities45.firealarm.SplashController">
-    <stylesheets>
-        <URL value="@/styles/splash.css"/>
-    </stylesheets>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane-bg" stylesheets="@/styles/splash.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ities45.firealarm.SplashController">
+    <children>
+        <!-- Text Label at the top of the image -->
+        <Text fx:id="fireAlarmText" text="FireAlarm" layoutX="250.0" layoutY="180.0" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+        <!-- Image View with logo -->
+        <ImageView fx:id="splashImage" fitHeight="400.0" fitWidth="400.0" layoutX="100.0" layoutY="200.0">
+            <image>
+                <Image url="@../../../images/logo.jpg" />
+            </image>
+        </ImageView>
+    </children>
 </AnchorPane>

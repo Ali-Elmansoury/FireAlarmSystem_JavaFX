@@ -1,7 +1,35 @@
-/*
- * Empty Stylesheet file.
- */
+/* Background for the login screen */
+.anchor-pane-bg {
+    -fx-background-color: #ADD8E6;  /* Light blue color */
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
 
-.mainFxmlClass {
+/* Top bar for login screen (same as in normal mode) */
+.flow-pane-custom {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.24), 8, 0.3, 0, 3);
+    -fx-border-radius: 12px;
+}
 
+/* Logo Pane */
+.logo-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-padding: 5px;
+}
+
+/* Placeholder for login icon */
+.login-icon {
+    -fx-background-image: url("/images/register.png"); /* Add the icon for login */
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-pref-width: 50px; /* Set width as needed */
+    -fx-pref-height: 50px; /* Set height as needed */
+    -fx-margin: 10px 0;
 }
