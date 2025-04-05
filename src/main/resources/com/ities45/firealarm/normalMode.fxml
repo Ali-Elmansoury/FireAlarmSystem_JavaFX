@@ -2,63 +2,71 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ities45.firealarm.NormalModeController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane-bg" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ities45.firealarm.NormalModeController">
     <stylesheets>
         <URL value="@/styles/normalmode.css" />
     </stylesheets>
-   <children>
-      <BorderPane prefHeight="545.0" prefWidth="916.0">
-         <top>
-            <FlowPane prefHeight="64.0" prefWidth="916.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Pane prefHeight="50.0" prefWidth="50.0">
-                     <children>
-                        <ImageView fx:id="logo" fitHeight="65.0" fitWidth="54.0" layoutX="-2.0" layoutY="-2.0" onDragDetected="#handleLogoClick" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/logo.jpg" />
-                           </image>
-                        </ImageView>
-                     </children>
-                     <FlowPane.margin>
-                        <Insets left="10.0" top="7.0" />
-                     </FlowPane.margin>
-                  </Pane>
-                  <Label fx:id="appName" prefHeight="16.0" prefWidth="175.0" text="Fire Alarm">
-                     <FlowPane.margin>
-                        <Insets left="15.0" top="4.0" />
-                     </FlowPane.margin>
-                     <font>
-                        <Font name="SansSerif Bold" size="19.0" />
-                     </font>
-                  </Label>
-                  <Pane prefHeight="49.0" prefWidth="59.0">
-                     <FlowPane.margin>
-                        <Insets bottom="4.0" left="590.0" top="4.0" />
-                     </FlowPane.margin>
-                     <children>
-                        <ImageView fx:id="userIcon" fitHeight="34.0" fitWidth="41.0" layoutX="10.0" layoutY="10.0" onDragDetected="#handleUserIconClick" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/userIcon.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="DEFAULT" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </Pane>
-               </children>
-            </FlowPane>
-         </top>
-      </BorderPane>
-   </children>
+    
+    <children>
+        <BorderPane fx:id="anchorScreen" prefHeight="400.0" prefWidth="600.0">
+            <top>
+                <!-- ✅ HBox to center topBar -->
+                <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+                    <children>
+                        <FlowPane fx:id="topBar" prefHeight="45.0" prefWidth="580.0" styleClass="flow-pane-custom">
+                            <children>
+                                <Pane prefHeight="40.0" prefWidth="40.0" styleClass=".logo-pane">
+                                    <children>
+                                        <ImageView fx:id="logo" fitHeight="35.0" fitWidth="35.0" layoutX="0.0" layoutY="0.0" onDragDetected="#handleLogoClick" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../images/logo.jpg" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                    <FlowPane.margin>
+                                        <Insets />
+                                    </FlowPane.margin>
+                                </Pane>
+
+                                <Label fx:id="appName" prefHeight="20.0" prefWidth="160.0" text="Fire Alarm">
+                                    <FlowPane.margin>
+                                        <Insets left="7.0" top="2.0" />
+                                    </FlowPane.margin>
+                                    <font>
+                                        <Font name="SansSerif Bold" size="16.0" />
+                                    </font>
+                                </Label>
+
+                                <Pane prefHeight="40.0" prefWidth="40.0">
+                                    <FlowPane.margin>
+                                        <Insets left="288.0" />
+                                    </FlowPane.margin>
+                                    <children>
+                                        <ImageView fx:id="userIcon" fitHeight="30.0" fitWidth="30.0" layoutX="5.0" layoutY="5.0" onDragDetected="#handleUserIconClick" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../images/Group.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </Pane>
+                            </children>
+                        </FlowPane>
+                    </children>
+                    <BorderPane.margin>
+                        <Insets top="10.0" />
+                    </BorderPane.margin>
+                </HBox>
+            </top>
+        </BorderPane>
+    </children>
 </AnchorPane>
