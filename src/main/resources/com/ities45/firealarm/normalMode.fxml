@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -12,10 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane-bg" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ities45.firealarm.NormalModeController">
-    <stylesheets>
-        <URL value="@/styles/normalmode.css" />
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane-bg" stylesheets="@/styles/normalmode.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ities45.firealarm.NormalModeController">
     
     <children>
         <BorderPane fx:id="anchorScreen" prefHeight="400.0" prefWidth="600.0">
@@ -27,7 +23,7 @@
                             <children>
                                 <Pane prefHeight="40.0" prefWidth="40.0" styleClass=".logo-pane">
                                     <children>
-                                        <ImageView fx:id="logo" fitHeight="35.0" fitWidth="35.0" layoutX="0.0" layoutY="0.0" onDragDetected="#handleLogoClick" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fx:id="logo" fitHeight="35.0" fitWidth="35.0" layoutX="0.0" layoutY="3.5" onDragDetected="#handleLogoClick" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../../../images/logo.jpg" />
                                             </image>
