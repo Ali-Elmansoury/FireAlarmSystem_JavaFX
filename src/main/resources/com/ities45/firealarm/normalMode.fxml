@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane-bg" stylesheets="@/styles/normalmode.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ities45.firealarm.NormalModeController">
@@ -63,6 +64,28 @@
                     </BorderPane.margin>
                 </HBox>
             </top>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="344.0" fitWidth="603.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="115.0" />
+                     </VBox.margin>
+                     <image>
+                        <Image url="@../../../images/safeMode.gif" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="16.0" prefWidth="218.0" text="Everything is fine">
+                     <font>
+                        <Font name="SansSerif Regular" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="230.0" top="30.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </center>
         </BorderPane>
     </children>
 </AnchorPane>

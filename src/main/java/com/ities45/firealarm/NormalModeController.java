@@ -147,14 +147,17 @@ public class NormalModeController implements Initializable {
             popup.hide();
             isPopupVisible = false;
         });  
-
-//    // Create a HBox to center the close label
-//    HBox closeBox = new HBox(closeLabel);
-//    closeBox.setAlignment(Pos.CENTER);  // Center the label in the HBox
-//    closeBox.setMaxWidth(Double.MAX_VALUE);  
+    
+    // Create a Logout button
+    Label logoutLabel = new Label("Logout");
+    logoutLabel.setStyle("-fx-text-fill: black; -fx-font-size: 13px; -fx-font-weight: bold; -fx-cursor: hand;");
+    logoutLabel.setOnMouseClicked(e -> {
+            // logout handle here
+            
+        }); 
     
     // Add elements to VBox
-    userInfoBox.getChildren().addAll(nameLabel, emailLabel, emergencyEmailLabel, separator, closeLabel);
+    userInfoBox.getChildren().addAll(nameLabel, emailLabel, emergencyEmailLabel,logoutLabel , separator, closeLabel);
 
  
     // Add the VBox to the popup
