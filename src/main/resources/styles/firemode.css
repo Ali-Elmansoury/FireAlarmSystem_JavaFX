@@ -5,3 +5,20 @@
 .mainFxmlClass {
 
 }
+
+.topBarBlack {
+    -fx-background-color: black;
+    -fx-background-radius: 12px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.24), 8, 0.3, 0, 3);
+    -fx-border-radius: 12px;
+}
+
+.anchor-pane-backGround {
+    -fx-background-image: url("/images/dangerBackground.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+

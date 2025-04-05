@@ -1,14 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.ities45.firealarm.FireModeController">
-    <stylesheets>
-        <URL value="@/styles/firemode.css" />
-    </stylesheets>
-   <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" />
-   </children>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane-backGround" stylesheets="@/styles/firemode.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ities45.firealarm.FireModeController">
+    <children>
+        <BorderPane fx:id="anchorScreen" prefHeight="400.0" prefWidth="600.0">
+            <top>
+                <FlowPane fx:id="topBar" prefHeight="45.0" prefWidth="580.0" styleClass="topBarBlack" BorderPane.alignment="CENTER">
+                    <children>
+                        <Pane prefHeight="44.0" prefWidth="48.0" styleClass="logo-pane">
+                            <children>
+                                <ImageView fx:id="logo" fitHeight="42.0" fitWidth="43.0" layoutX="0" layoutY="0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../images/logo.jpg" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                            <FlowPane.margin>
+                                <Insets top="2.0" />
+                            </FlowPane.margin>
+                        </Pane>
+                        
+                        <Label prefHeight="21.0" prefWidth="129.0" text="Fire Alarm" textFill="WHITE">
+                            <font>
+                                <Font name="SansSerif Bold" size="18.0" />
+                            </font>
+                            <FlowPane.margin>
+                                <Insets left="7.0" top="2.0" />
+                            </FlowPane.margin>
+                        </Label>
+
+                        <Pane prefHeight="40.0" prefWidth="40.0">
+                            <children>
+                                <ImageView fx:id="userIcon" fitHeight="40.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../images/Group-1.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                            <FlowPane.margin>
+                                <Insets left="298.0" />
+                            </FlowPane.margin>
+                        </Pane>
+                    </children>
+                </FlowPane>
+            </top>
+
+            <center>
+                <Pane prefHeight="355.0" prefWidth="600.0">
+                    <!-- Fire GIFs -->
+                    <ImageView fx:id="fire1" fitHeight="100" fitWidth="100" layoutX="80" layoutY="100" />
+                    <ImageView fx:id="fire2" fitHeight="100" fitWidth="100" layoutX="250" layoutY="130" />
+                    <ImageView fx:id="fire3" fitHeight="100" fitWidth="100" layoutX="420" layoutY="100" />
+
+                    <!-- NEW: Single alarm button with proper text positioning -->
+                    <Button fx:id="alarmButton" layoutX="250" layoutY="270" style="-fx-background-color: transparent;" contentDisplay="TOP">
+                        <graphic>
+                            <ImageView fitHeight="60.0" fitWidth="60.0">
+                                <image>
+                                    <Image url="@../../../images/alarm-on.png" />
+                                </image>
+                            </ImageView>
+                        </graphic>
+                        <Label text="Turn Off Alarm" textFill="WHITE">
+                            <font>
+                                <Font name="SansSerif Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <padding>
+                            <Insets top="10.0" bottom="10.0" />
+                        </padding>
+                    </Button>
+                </Pane>
+            </center>
+        </BorderPane>
+    </children>
 </AnchorPane>

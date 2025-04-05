@@ -5,10 +5,7 @@
 .mainFxmlClass {
 
 }
-.image-view {
-    -fx-shape: "M 50, 50 m -50, 0 a 50,50 0 1,0 100,0 a 50,50 0 1,0 -100,0";
-    -fx-clip: true;
-}
+
 
 .flow-pane-custom {
     -fx-background-color: white;
