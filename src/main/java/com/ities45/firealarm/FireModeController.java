@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package com.ities45.firealarm;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -45,55 +47,77 @@ public class FireModeController implements Initializable {
 
     private boolean isPopupVisible = false;
     private boolean isAlarmOn = true;
-    
+    private MediaPlayer alarmPlayer;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        topBar.setLayoutY(20);
+    topBar.setLayoutY(20);
 
-        anchorScreen.widthProperty().addListener((obs, oldVal, newVal) -> {
-            double parentWidth = newVal.doubleValue();
-            double paneWidth = topBar.getPrefWidth();
-            topBar.setLayoutX((parentWidth - paneWidth) / 2);
-        });
+    anchorScreen.widthProperty().addListener((obs, oldVal, newVal) -> {
+        double parentWidth = newVal.doubleValue();
+        double paneWidth = topBar.getPrefWidth();
+        topBar.setLayoutX((parentWidth - paneWidth) / 2);
+    });
 
-        logo.setOnMouseClicked(this::handleLogoClick);
-        logo.setOnMouseEntered(this::handleMouseEntered);
-        logo.setOnMouseExited(this::handleMouseExited);
+    logo.setOnMouseClicked(this::handleLogoClick);
+    logo.setOnMouseEntered(this::handleMouseEntered);
+    logo.setOnMouseExited(this::handleMouseExited);
 
-        userIcon.setOnMouseClicked(this::handleUserIconClick);
-        userIcon.setOnMouseEntered(this::handleMouseEntered);
-        userIcon.setOnMouseExited(this::handleMouseExited);
+    userIcon.setOnMouseClicked(this::handleUserIconClick);
+    userIcon.setOnMouseEntered(this::handleMouseEntered);
+    userIcon.setOnMouseExited(this::handleMouseExited);
 
-        // Set random fire GIFs
-        String[] gifs = {
-            getClass().getResource("/images/fire1.gif").toExternalForm(),
-            getClass().getResource("/images/fire2.gif").toExternalForm(),
-            getClass().getResource("/images/fire3.gif").toExternalForm()
-        };
-        Random rand = new Random();
+    // Set random fire GIFs
+    String[] gifs = {
+        getClass().getResource("/images/fire1.gif").toExternalForm(),
+        getClass().getResource("/images/fire2.gif").toExternalForm(),
+        getClass().getResource("/images/fire3.gif").toExternalForm()
+    };
+    Random rand = new Random();
 
-        fire1.setImage(new Image(gifs[rand.nextInt(gifs.length)]));
-        fire2.setImage(new Image(gifs[rand.nextInt(gifs.length)]));
-        fire3.setImage(new Image(gifs[rand.nextInt(gifs.length)]));
+    fire1.setImage(new Image(gifs[rand.nextInt(gifs.length)]));
+    fire2.setImage(new Image(gifs[rand.nextInt(gifs.length)]));
+    fire3.setImage(new Image(gifs[rand.nextInt(gifs.length)]));
+       
+    // Setup the alarm sound
+    Media alarmSound = new Media(getClass().getResource("/images/alarm1.wav").toExternalForm());
+    
+    alarmPlayer = new MediaPlayer(alarmSound);
+    alarmPlayer.setCycleCount(MediaPlayer.INDEFINITE); 
+    alarmPlayer.play();
 
-        // Single button handler
-        alarmButton.setOnAction(e -> toggleAlarmState());
-    }
+    // Button click handler
+    alarmButton.setOnAction(e -> toggleAlarmState());
+    
+}
 
-    private void toggleAlarmState() {
-        isAlarmOn = !isAlarmOn;
-        
-        ImageView imgView = (ImageView) alarmButton.getGraphic();
-        if (isAlarmOn) {
-            imgView.setImage(new Image(getClass().getResource("/images/alarm-on.png").toExternalForm()));
-            alarmButton.setText("Turn Off Alarm");
-            System.out.println("Alarm turned ON");
-        } else {
-            imgView.setImage(new Image(getClass().getResource("/images/alarm-off.png").toExternalForm()));
-            alarmButton.setText("Turn On Alarm");
-            System.out.println("Alarm turned OFF");
+private void toggleAlarmState() {
+    isAlarmOn = !isAlarmOn;
+
+    ImageView imgView = (ImageView) alarmButton.getGraphic();
+
+    if (isAlarmOn) {
+        imgView.setImage(new Image(getClass().getResource("/images/alarm-on.png").toExternalForm()));
+        alarmButton.setText("Turn Off Alarm");
+
+        // 🔊 Start the alarm sound
+        Media alarmSound = new Media(getClass().getResource("/images/alarm1.wav").toExternalForm());
+        alarmPlayer = new MediaPlayer(alarmSound);
+        alarmPlayer.setCycleCount(MediaPlayer.INDEFINITE); // Loop sound
+        alarmPlayer.play();
+
+        System.out.println("Alarm activated");
+    } else {
+        imgView.setImage(new Image(getClass().getResource("/images/alarm-off.png").toExternalForm()));
+        alarmButton.setText("Alarm stopped");
+
+        // 🔇 Stop the sound
+        if (alarmPlayer != null) {
+            alarmPlayer.stop();
         }
+
+        System.out.println("Alarm stopped");
     }
+}
 
     @FXML
     public void handleLogoClick(MouseEvent event) {
