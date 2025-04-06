@@ -5,6 +5,7 @@
 package com.ities45.firealarm;
 
 import com.fazecast.jSerialComm.SerialPort;
+import com.ities45.firealarm.dal.UserDTO;
 import com.ities45.firealarm.notification.NotificationHandler;
 import com.ities45.firealarm.serialcomm.SerialCommHandler;
 import com.ities45.firealarm.sessionmanagement.SessionManager;
@@ -69,6 +70,12 @@ public class FireModeController implements Initializable {
     // Setter method to receive the handler
     public void setHandler(SerialCommHandler handler) {
         this.handler = handler;
+    }
+
+    private UserDTO userData;
+
+    public void setUserData(UserDTO userData) {
+        this.userData = userData;
     }
 
     @Override
@@ -178,9 +185,9 @@ public class FireModeController implements Initializable {
         userInfoBox.setPadding(new Insets(10));
 
         // Create labels for user information
-        Label nameLabel = new Label("Name: John Doe");
-        Label emailLabel = new Label("Email: johndoe@example.com");
-        Label emergencyEmailLabel = new Label("Emergency Email: emergency@example.com");
+        Label nameLabel = new Label("Name: " + userData.getUsername());
+        Label emailLabel = new Label("Email: " + userData.getEmail());
+        Label emergencyEmailLabel = new Label("Emergency Email: " + userData.getEmergencyEmail());
 
         // Set a uniform font style and alignment
         nameLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");

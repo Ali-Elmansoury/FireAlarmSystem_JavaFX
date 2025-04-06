@@ -72,6 +72,13 @@ private void handleLogin(ActionEvent event) {
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);
             stage.show();
+            
+            // Get the NormalModeController instance
+            NormalModeController normalModeController = loader.getController();
+
+            // Pass the email to NormalModeController
+            normalModeController.setUserEmail(userEmail);
+            
         } else {
             showAlert(Alert.AlertType.ERROR, "Login Failed", "User login failed.");
         }

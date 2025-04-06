@@ -5,6 +5,8 @@
 package com.ities45.firealarm;
 
 import com.fazecast.jSerialComm.SerialPort;
+import com.ities45.firealarm.dal.DAO;
+import com.ities45.firealarm.dal.UserDTO;
 import com.ities45.firealarm.serialcomm.SerialCommHandler;
 import com.ities45.firealarm.sessionmanagement.SessionManager;
 import java.net.URL;
@@ -17,7 +19,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -62,9 +67,27 @@ public class NormalModeController implements Initializable {
     private boolean isPopupVisible = false;
 
     private SerialCommHandler handler;
+    
+    private String userEmail; // Add this field to store the email
+
+    // Setter method to receive the email
+    public void setUserEmail(String email) {
+        this.userEmail = email;
+        updateUserInfo(); // Optionally update UI immediately
+    }
+    
+    private UserDTO retrievedUser;
+    
+    private boolean isAlreadyNavigated = false;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        // Check if there's a logged-in user when the app starts
+        String loggedInUser = SessionManager.getLoggedInUser();
+        if (loggedInUser != null && userEmail == null) {
+            setUserEmail(loggedInUser); // Set email from session if app starts here
+        }
 
         String portName = "/dev/ttyACM0";  // Adjust to your port
         handler = new SerialCommHandler(
@@ -78,7 +101,8 @@ public class NormalModeController implements Initializable {
             handler.setDataListener((data) -> {
                 System.out.println("[INFO] Received: " + data.trim());
 
-                if (data.trim().equals("F")) {
+                if (data.trim().equals("F") && !isAlreadyNavigated) {
+                    isAlreadyNavigated = true;
                     navigateToNextScreen(data);
                 }
             });
@@ -123,6 +147,25 @@ public class NormalModeController implements Initializable {
 
         logoutLabel.setOnMouseEntered(this::handleMouseEntered);
         logoutLabel.setOnMouseExited(this::handleMouseExited);
+    }
+    
+    // Update the popup with the email
+    private void updateUserInfo() {
+        if (userEmail != null) {
+            try {
+                retrievedUser = DAO.getUserData(userEmail);
+                if (retrievedUser != null) {
+                    System.out.println("User retrieved successfully:");
+                    System.out.println("Username: " + retrievedUser.getUsername());
+                    System.out.println("Email: " + retrievedUser.getEmail());
+                    System.out.println("Emergency Email: " + retrievedUser.getEmergencyEmail());
+                } else {
+                    System.out.println("No user found with that email.");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(NormalModeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @FXML
@@ -174,9 +217,9 @@ public class NormalModeController implements Initializable {
         userInfoBox.setPadding(new Insets(10));
 
         // Create labels for user information
-        Label nameLabel = new Label("Name: John Doe");
-        Label emailLabel = new Label("Email: johndoe@example.com");
-        Label emergencyEmailLabel = new Label("Emergency Email: emergency@example.com");
+        Label nameLabel = new Label("Name: " + retrievedUser.getUsername());
+        Label emailLabel = new Label("Email: " + retrievedUser.getEmail());
+        Label emergencyEmailLabel = new Label("Emergency Email: " + retrievedUser.getEmergencyEmail());
 
         // Set a uniform font style and alignment
         nameLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
@@ -284,7 +327,7 @@ public class NormalModeController implements Initializable {
 
             // Pass the handler reference to the next controller
             nextController.setHandler(handler);
-
+            nextController.setUserData(retrievedUser); // Pass user data
             nextController.setupUI(data);  // Set up the UI components based on the data
 
             // Print to debug
