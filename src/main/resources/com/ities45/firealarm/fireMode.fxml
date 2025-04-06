@@ -57,28 +57,30 @@
             <center>
                 <Pane prefHeight="355.0" prefWidth="600.0">
                     <!-- Fire GIFs -->
-                    <ImageView fx:id="fire1" fitHeight="100" fitWidth="100" layoutX="80" layoutY="100" />
-                    <ImageView fx:id="fire2" fitHeight="100" fitWidth="100" layoutX="250" layoutY="130" />
-                    <ImageView fx:id="fire3" fitHeight="100" fitWidth="100" layoutX="420" layoutY="100" />
+                    <ImageView fx:id="fire1" fitHeight="100" fitWidth="100" layoutX="80" layoutY="10" />
+                    <ImageView fx:id="fire2" fitHeight="100" fitWidth="100" layoutX="20" layoutY="300" />
+                    <ImageView fx:id="fire3" fitHeight="100" fitWidth="100" layoutX="450" layoutY="100" />
 
-                    <!-- NEW: Single alarm button with proper text positioning -->
-                    <Button fx:id="alarmButton" layoutX="250" layoutY="270" style="-fx-background-color: transparent;" contentDisplay="TOP">
+                    <ImageView fx:id="dangerGif" layoutX="50" layoutY="200" fitWidth="603.0" fitHeight="344.0" preserveRatio="true" visible="true">
+                      <image>
+                        <Image url="@../../../images/dangermode.gif" />
+                      </image>
+                    </ImageView>
+
+                <Button fx:id="alarmButton" layoutX="220" layoutY="600" text="Turn off Alarm"
+                    contentDisplay="LEFT" styleClass="alarm-button">
                         <graphic>
-                            <ImageView fitHeight="60.0" fitWidth="60.0">
-                                <image>
-                                    <Image url="@../../../images/alarm-on.png" />
-                                </image>
+                            <ImageView fx:id="alarmImageView" fitHeight="20.0" fitWidth="20.0" preserveRatio="true">
+                             <image>
+                                <Image url="@../../../images/alarm-on.png" />
+                             </image>
                             </ImageView>
                         </graphic>
-                        <Label text="Turn Off Alarm" textFill="WHITE">
-                            <font>
-                                <Font name="SansSerif Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <padding>
-                            <Insets top="10.0" bottom="10.0" />
-                        </padding>
-                    </Button>
+                       <font>
+                      <Font name="SansSerif Bold" size="14.0" />
+                     </font>
+                </Button>
+
                 </Pane>
             </center>
         </BorderPane>
