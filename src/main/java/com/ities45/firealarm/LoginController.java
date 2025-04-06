@@ -67,7 +67,7 @@ private void handleLogin(ActionEvent event) {
             showAlert(Alert.AlertType.INFORMATION, "Success", "Login Successful!");
 
             // 👉 Navigate to Home
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/ities45/firealarm/normalMode.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);
