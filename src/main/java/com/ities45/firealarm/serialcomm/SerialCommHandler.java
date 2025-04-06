@@ -61,39 +61,52 @@ public class SerialCommHandler {
 
     // Send string data directly
     public boolean sendString(String data) {
-        return sendData(data.getBytes());
-    }
+    return sendData(data.getBytes());
+}
 
     public void setDataListener(Consumer<String> listener) {
         this.dataListener = listener;
     }
 
     public void startReading() {
-        if (isPortOpen() && !running) {
-            running = true;
-            readThread = new Thread(() -> {
-                byte[] buffer = new byte[1024];
-                System.out.println("[INFO] Started reading thread.");
+    if (isPortOpen() && !running) {
+        running = true;
+        readThread = new Thread(() -> {
+            byte[] buffer = new byte[1024];
+            StringBuilder messageBuilder = new StringBuilder(); // Accumulate message
+            System.out.println("[INFO] Started reading thread.");
 
-                while (running) {
-                    try {
-                        int bytesRead = serialPort.readBytes(buffer, buffer.length);
-                        if (bytesRead > 0 && dataListener != null) {
-                            String received = new String(buffer, 0, bytesRead);
-                            System.out.println("[DEBUG] Received: " + received);
-                            dataListener.accept(received);
+            while (running) {
+                try {
+                    int bytesRead = serialPort.readBytes(buffer, buffer.length);
+                    if (bytesRead > 0) {
+                        for (int i = 0; i < bytesRead; i++) {
+                            char receivedChar = (char) buffer[i];
+                            messageBuilder.append(receivedChar);
+
+                            // Check for end of message (i.e., "\r\n")
+                            if (receivedChar == '\n' && messageBuilder.length() > 1 && messageBuilder.charAt(messageBuilder.length() - 2) == '\r') {
+                                String fullMessage = messageBuilder.toString();
+                                System.out.println("[DEBUG] Received: " + fullMessage);
+                                if (dataListener != null) {
+                                    dataListener.accept(fullMessage.trim());  // Send complete message to listener
+                                }
+                                messageBuilder.setLength(0);  // Reset builder for next message
+                            }
                         }
-                    } catch (Exception e) {
-                        System.err.println("[ERROR] Error while reading from port: " + e.getMessage());
-                        running = false;
                     }
+                } catch (Exception e) {
+                    System.err.println("[ERROR] Error while reading from port: " + e.getMessage());
+                    running = false;
                 }
+            }
 
-                System.out.println("[INFO] Reading thread stopped.");
-            });
-            readThread.start();
-        }
+            System.out.println("[INFO] Reading thread stopped.");
+        });
+        readThread.start();
     }
+}
+
 
     public void stopReading() {
         if (running) {
