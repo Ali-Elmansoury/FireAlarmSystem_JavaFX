@@ -12,7 +12,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane-bg" stylesheets="@/styles/normalmode.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ities45.firealarm.NormalModeController">
+<AnchorPane id="AnchorPane" prefHeight="900.0" 
+    prefWidth="600.0"
+    minHeight="900.0"
+    minWidth="600.0"
+    maxHeight="900.0"
+    maxWidth="600.0" styleClass="anchor-pane-bg" stylesheets="@/styles/normalmode.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ities45.firealarm.NormalModeController">
     
     <children>
         <BorderPane fx:id="anchorScreen" prefHeight="400.0" prefWidth="600.0">
