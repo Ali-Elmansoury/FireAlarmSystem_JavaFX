@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -46,18 +47,31 @@ public class NormalModeController implements Initializable {
     @FXML
     private Label appName;
     @FXML
+    private Label logoutLabel;
+    @FXML
     private ImageView userIcon;
     @FXML
     private FlowPane topBar;
     @FXML
     private BorderPane anchorScreen;
     
+    private Popup popup;
     private boolean isPopupVisible = false;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        // Set top offset
+        
+        // Defer the logic of accessing Stage until the UI is fully initialized
+        Platform.runLater(() -> {
+            Stage mainStage = (Stage) anchorScreen.getScene().getWindow();
+
+            // Set event listener for when the stage is hidden (e.g., minimized or closed)
+            mainStage.setOnHidden(event -> {
+                System.out.println("Main window hidden. Hiding popup.");
+                hidePopupIfVisible();  // Hide the popup when the main window is hidden
+            });
+        });
+            // Set top offset
         topBar.setLayoutY(20);
 
         // Center horizontally when width changes
@@ -76,6 +90,9 @@ public class NormalModeController implements Initializable {
         userIcon.setOnMouseClicked(this::handleUserIconClick);
         userIcon.setOnMouseEntered(this::handleMouseEntered);
         userIcon.setOnMouseExited(this::handleMouseExited);
+        
+        logoutLabel.setOnMouseEntered(this::handleMouseEntered);
+        logoutLabel.setOnMouseExited(this::handleMouseExited);
     } 
     
     @FXML
@@ -117,7 +134,7 @@ public class NormalModeController implements Initializable {
     double windowHeight = scene.getHeight();
 
     // Create a new Popup to display user info
-    Popup popup = new Popup();
+    popup = new Popup();
 
     // Create a VBox container for the user information
     VBox userInfoBox = new VBox(5);  // 5px spacing between elements
@@ -148,16 +165,9 @@ public class NormalModeController implements Initializable {
             isPopupVisible = false;
         });  
     
-    // Create a Logout button
-    Label logoutLabel = new Label("Logout");
-    logoutLabel.setStyle("-fx-text-fill: black; -fx-font-size: 13px; -fx-font-weight: bold; -fx-cursor: hand;");
-    logoutLabel.setOnMouseClicked(e -> {
-            // logout handle here
-            
-        }); 
     
     // Add elements to VBox
-    userInfoBox.getChildren().addAll(nameLabel, emailLabel, emergencyEmailLabel,logoutLabel , separator, closeLabel);
+    userInfoBox.getChildren().addAll(nameLabel, emailLabel, emergencyEmailLabel , separator, closeLabel);
 
  
     // Add the VBox to the popup
@@ -181,17 +191,38 @@ public class NormalModeController implements Initializable {
     popup.show(stage, adjustedX, adjustedY);
     
     isPopupVisible = true;
-
+    
 
     }
+    
+    // Simplified hidePopupIfVisible method
+    private void hidePopupIfVisible() {
+        if (isPopupVisible && popup != null) {
+            popup.hide();
+            isPopupVisible = false;
+        }
+    }
+    
+    @FXML
+    private void handleLogoutClick (MouseEvent event) {
+        System.out.println("logout handle");
+    
+    }
+
     private void handleMouseEntered(MouseEvent event) {
         logo.getScene().setCursor(Cursor.HAND); // Set cursor to hand when mouse enters the logo
         userIcon.getScene().setCursor(Cursor.HAND); 
+        logoutLabel.getScene().setCursor(Cursor.HAND); 
         
     }
+
     private void handleMouseExited(MouseEvent event) {
         logo.getScene().setCursor(Cursor.DEFAULT); // Reset cursor to default (arrow) when mouse exits the logo
         userIcon.getScene().setCursor(Cursor.DEFAULT);
+        logoutLabel.getScene().setCursor(Cursor.DEFAULT);
+
     }
+    
+        
     
 }

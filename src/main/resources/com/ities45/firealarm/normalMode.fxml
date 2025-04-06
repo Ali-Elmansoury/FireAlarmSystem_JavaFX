@@ -46,7 +46,7 @@
 
                                 <Pane prefHeight="40.0" prefWidth="40.0">
                                     <FlowPane.margin>
-                                        <Insets left="288.0" />
+                                        <Insets left="240.0" />
                                     </FlowPane.margin>
                                     <children>
                                         <ImageView fx:id="userIcon" fitHeight="30.0" fitWidth="30.0" layoutX="5.0" layoutY="5.0" onDragDetected="#handleUserIconClick" pickOnBounds="true" preserveRatio="true">
@@ -56,6 +56,11 @@
                                         </ImageView>
                                     </children>
                                 </Pane>
+                        <Label fx:id="logoutLabel" onMouseClicked="#handleLogoutClick" text="Logout">
+                           <font>
+                              <Font name="SansSerif Bold" size="13.0" />
+                           </font>
+                        </Label>
                             </children>
                         </FlowPane>
                     </children>
