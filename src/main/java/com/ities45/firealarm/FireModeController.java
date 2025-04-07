@@ -278,7 +278,7 @@ public class FireModeController implements Initializable {
             //noti
             String subject = "Emergency Alert - Alarm Triggered";
             String body = "The alarm has been triggered. Immediate attention is required.";
-            String recipientEmail = "ali_elmansoury2001@live.com";  // Replace with the recipient's email address
+            String recipientEmail = userData.getEmergencyEmail();  // Replace with the recipient's email address
             NotificationHandler.sendEmergencyEmail(subject, body, recipientEmail);
 
             String portName = "/dev/ttyACM0";  // Adjust to your port
