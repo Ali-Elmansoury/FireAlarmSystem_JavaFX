@@ -11,12 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="900.0" 
-    prefWidth="600.0"
-    minHeight="900.0"
-    minWidth="600.0"
-    maxHeight="900.0"
-    maxWidth="600.0" styleClass="anchor-pane-backGround" stylesheets="@/styles/firemode.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ities45.firealarm.FireModeController">
+<AnchorPane id="AnchorPane" maxHeight="900.0" maxWidth="600.0" minHeight="900.0" minWidth="600.0" prefHeight="900.0" prefWidth="600.0" styleClass="anchor-pane-backGround" stylesheets="@/styles/firemode.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ities45.firealarm.FireModeController">
     <children>
         <BorderPane fx:id="anchorScreen" prefHeight="400.0" prefWidth="600.0">
             <top>
@@ -62,6 +57,9 @@
                      </font>
                   </Label>
                     </children>
+               <BorderPane.margin>
+                  <Insets left="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
                 </FlowPane>
             </top>
 
