@@ -13,10 +13,10 @@ import java.util.Properties;
  * @author ali
  */
 public class NotificationHandler {
-    private static final String SMTP_SERVER = "smtp.gmail.com"; // Use your email service's SMTP server
-    private static final String USERNAME = "ali.elmansoury21@gmail.com"; // Your email address
-    private static final String PASSWORD = "iyvtcwdziechnpyf"; // Your email password (or App password if 2FA enabled)
-    private static final String FROM_EMAIL = "ali.elmansoury21@gmail.com"; // Your email address (same as USERNAME)
+    private static final String SMTP_SERVER = ""; // Use your email service's SMTP server
+    private static final String USERNAME = ""; // Your email address
+    private static final String PASSWORD = ""; // Your email password (or App password if 2FA enabled)
+    private static final String FROM_EMAIL = ""; // Your email address (same as USERNAME)
 
     // Method to send email
     public static void sendEmergencyEmail(String subject, String body, String toEmail) {
